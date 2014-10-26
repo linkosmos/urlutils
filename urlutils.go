@@ -3,6 +3,7 @@ package urlutils
 import (
 	"net/url"
 	"regexp"
+	"strings"
 )
 
 const (
@@ -37,4 +38,20 @@ func IsAbsolute(link *url.URL) bool {
 // SameDomain - compares target and link domain host
 func SameDomain(target *url.URL, link *url.URL) bool {
 	return target.Host == link.Host
+}
+
+// AddWWW - adds www in front of given URL
+func AddWWW(u *url.URL) *url.URL {
+	if len(u.Host) > 0 && !strings.HasPrefix(strings.ToLower(u.Host), "www.") {
+		u.Host = "www." + u.Host
+	}
+	return u
+}
+
+// AddHTTP - adds scheme for URL if missing
+func AddHTTP(u *url.URL) *url.URL {
+	if u.Scheme == "" {
+		u.Scheme = "http://"
+	}
+	return u
 }

@@ -63,3 +63,33 @@ func TestIsAbsolute(t *testing.T) {
 		}
 	}
 }
+
+var addWWWTests = []struct {
+	link         string
+	expectedLink string
+}{
+	{"http://example.com", "http://www.example.com"},
+	{"www.anohter.com", "http://www.another.com"},
+}
+
+func TestAddWWW(t *testing.T) {
+	for _, test := range addWWWTests {
+		u, _ := url.Parse(test.link)
+		got := AddWWW(u)
+		if u != got {
+			t.Errorf("Expected - %q != %q", u.String(), got.String())
+		}
+	}
+}
+
+func TestAddHTTP(t *testing.T) {
+	for _, test := range addWWWTests {
+		u, _ := url.Parse(test.link)
+		got := AddHTTP(u)
+		if u != got {
+			t.Errorf("Expeced to add Scheme for %q", u)
+		}
+
+	}
+
+}
