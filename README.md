@@ -11,3 +11,7 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - IsRelative: checks whether URL is relative, e.g.: /news/article/13.html
 - IsAbsolute: checks whether URL has absolute (full) path
 - SameDomain: compares URL's checks if they have same domain
+- AddWWW: prepends www in front of Host
+- AddHTTP: adds http:// if Scheme is empty
+- NormalizeDomain: strips sub-domains from Host
+- StripParams: strips path, query & fragment from URL
