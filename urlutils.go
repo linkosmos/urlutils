@@ -70,3 +70,11 @@ func NormalizeDomain(u *url.URL) (*url.URL, error) {
 	u.Host = prefix + strings.Join(domain[len(domain)-2:], ".")
 	return u, nil
 }
+
+// StripParams - strip URL path, query & fragment #
+func StripParams(u *url.URL) *url.URL {
+	u.Path = ""
+	u.RawQuery = ""
+	u.Fragment = ""
+	return u
+}
