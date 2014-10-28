@@ -93,3 +93,24 @@ func TestAddHTTP(t *testing.T) {
 	}
 
 }
+
+var normalizeDomainTests = []struct {
+	url    string
+	domain string
+}{
+	{"http://www.example.com", "http://www.example.com"},
+	{"http://www.sub.sub.example.com", "http://www.example.com"},
+	{"http://dom-sub.o.com", "http://o.com"},
+}
+
+func TestNormalizeDomain(t *testing.T) {
+	for _, test := range normalizeDomainTests {
+		u, _ := url.Parse(test.url)
+		got, _ := NormalizeDomain(u)
+		expected, _ := url.Parse(test.domain)
+		if got == expected {
+			t.Errorf("Expected %q got %q", test.domain, got)
+		}
+
+	}
+}

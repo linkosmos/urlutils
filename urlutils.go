@@ -1,6 +1,7 @@
 package urlutils
 
 import (
+	"errors"
 	"net/url"
 	"regexp"
 	"strings"
@@ -54,4 +55,18 @@ func AddHTTP(u *url.URL) *url.URL {
 		u.Scheme = "http://"
 	}
 	return u
+}
+
+// NormalizeDomain - parses Host and returns root domain
+func NormalizeDomain(u *url.URL) (*url.URL, error) {
+	if len(u.Host) < 0 {
+		return nil, errors.New("Missing host in URL structure")
+	}
+	domain := strings.Split(u.Host, ".")
+	prefix := ""
+	if strings.HasPrefix(strings.ToLower(u.Host), "www.") {
+		prefix = "www."
+	}
+	u.Host = prefix + strings.Join(domain[len(domain)-2:], ".")
+	return u, nil
 }
