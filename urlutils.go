@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	assetRegex = "\\.png|\\.jpe??g|\\.gif|\\.bmp|\\.psd|\\.js|\\.json|\\.css"
+	assetRegex = "\\.png|\\.jpe??g|\\.gif|\\.bmp|\\.psd|\\.js|\\.json|\\.css|javascript"
 )
 
 // ResolveURL - resolves relative to absolute URL
