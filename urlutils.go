@@ -59,10 +59,13 @@ func AddHTTP(u *url.URL) *url.URL {
 
 // NormalizeDomain - parses Host and returns root domain
 func NormalizeDomain(u *url.URL) (*url.URL, error) {
-	if len(u.Host) < 0 {
+	if u.Host == "" {
 		return nil, errors.New("Missing host in URL structure")
 	}
 	domain := strings.Split(u.Host, ".")
+	if len(domain) < 2 {
+		return nil, errors.New("URL Host is malformed")
+	}
 	prefix := ""
 	if strings.HasPrefix(strings.ToLower(u.Host), "www.") {
 		prefix = "www."
