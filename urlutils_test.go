@@ -10,7 +10,7 @@ var isAssetTests = []struct {
 	expected bool
 }{
 	{"https://www.example.com/assets/default-3a228ac6db5e7a521d6442dc37d476f8.css", true},
-	{"https://www.example.js/assets/defaultcss", false},
+	{"https://www.example.io/assets/defaultcss", false},
 	{"https://www.example/image.GIF", true},
 	{"https://www.example/image.jpeg", true},
 	{"https://www.example/image.jpg", true},

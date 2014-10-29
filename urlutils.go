@@ -21,7 +21,7 @@ func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
 func IsAsset(link *url.URL) bool {
 	// Case insensitive regexp
 	r, _ := regexp.Compile("(?i)" + assetRegex)
-	return r.MatchString(link.Path)
+	return r.MatchString(link.String())
 }
 
 // IsRelative - true if link is relative
