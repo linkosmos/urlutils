@@ -3,6 +3,7 @@ urlutils
 
 [![Build Status](https://travis-ci.org/ernestas-poskus/urlutils.svg?branch=master)](https://travis-ci.org/ernestas-poskus/urlutils)
 [![GoDoc](http://godoc.org/github.com/ernestas-poskus/urlutils?status.svg)](http://godoc.org/github.com/ernestas-poskus/urlutils)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 Golang standard URL wrapper, adds syntactic sugar and few new methods.
 
