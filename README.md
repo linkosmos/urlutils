@@ -2,6 +2,7 @@ urlutils
 ========
 
 [![Build Status](https://travis-ci.org/ernestas-poskus/urlutils.svg?branch=master)](https://travis-ci.org/ernestas-poskus/urlutils)
+[![GoDoc](http://godoc.org/github.com/ernestas-poskus/urlutils?status.svg)](http://godoc.org/github.com/ernestas-poskus/urlutils)
 
 Golang standard URL wrapper, adds syntactic sugar and few new methods.
 
