@@ -81,3 +81,22 @@ func StripParams(u *url.URL) *url.URL {
 	u.Fragment = ""
 	return u
 }
+
+// ReverseDomain - reverses given URL Host
+// e.g.: www.example.com => com.example.www
+func ReverseDomain(u *url.URL) (string, error) {
+	if u.Host == "" {
+		return "", errors.New("Missing host in URL structure")
+	}
+	domain := strings.Split(u.Host, ".")
+	if len(domain) < 2 {
+		return "", errors.New("URL Host is malformed")
+	}
+	var reverseDomain []string
+
+	for i := len(domain) - 1; i >= 0; i-- {
+		reverseDomain = append(reverseDomain, domain[i])
+	}
+
+	return strings.Join(reverseDomain, "."), nil
+}

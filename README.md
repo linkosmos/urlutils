@@ -15,3 +15,4 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - AddHTTP: adds http:// if Scheme is empty
 - NormalizeDomain: strips sub-domains from Host
 - StripParams: strips path, query & fragment from URL
+- ReverseDomain: reverses URL Host, e.g.: www.example.com => com.example.www

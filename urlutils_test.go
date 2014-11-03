@@ -114,3 +114,23 @@ func TestNormalizeDomain(t *testing.T) {
 
 	}
 }
+
+var reverseDomainTests = []struct {
+	url      string
+	expected string
+}{
+	{"http://www.example.com", "com.example.www"},
+	{"http://example", ""},
+	{"example.com", ""},
+}
+
+func TestReverseDomain(t *testing.T) {
+	for _, test := range reverseDomainTests {
+		u, _ := url.Parse(test.url)
+		got, _ := ReverseDomain(u)
+		if got != test.expected {
+			t.Errorf("Expected %q got %q", test.expected, got)
+		}
+	}
+
+}
