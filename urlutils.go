@@ -74,14 +74,6 @@ func NormalizeDomain(u *url.URL) (*url.URL, error) {
 	return u, nil
 }
 
-// StripParams - strip URL path, query & fragment #
-func StripParams(u *url.URL) *url.URL {
-	u.Path = ""
-	u.RawQuery = ""
-	u.Fragment = ""
-	return u
-}
-
 // ReverseDomain - reverses given URL Host
 // e.g.: www.example.com => com.example.www
 func ReverseDomain(u *url.URL) (string, error) {
@@ -99,4 +91,19 @@ func ReverseDomain(u *url.URL) (string, error) {
 	}
 
 	return strings.Join(reverseDomain, "."), nil
+}
+
+// StripPathQueryFragment - strips URL path, query & fragment #
+func StripPathQueryFragment(u *url.URL) *url.URL {
+	u.Path = ""
+	u.RawQuery = ""
+	u.Fragment = ""
+	return u
+}
+
+// StripQueryFragment - strips URL query & fragment #
+func StripQueryFragment(u *url.URL) *url.URL {
+	u.RawQuery = ""
+	u.Fragment = ""
+	return u
 }
