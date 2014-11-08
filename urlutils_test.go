@@ -134,3 +134,25 @@ func TestReverseDomain(t *testing.T) {
 	}
 
 }
+
+var splitPathTests = []struct {
+	url      string
+	depth    int
+	expected string
+}{
+	{"http://www.example.com/section/here", 1, "/section"},
+	{"http://www.example.com/second/here/more?para=22", 3, "/second/here/more"},
+	{"http://www.example.com/here/now/params?query=22#fragment", 0, ""},
+	{"http://www.example.com/section/here", -13, ""},
+	{"http://www.example.com/section/here/where/path/is/long?query=2#ad", 5, "/section/here/where/path/is"},
+}
+
+func TestSplitPath(t *testing.T) {
+	for _, test := range splitPathTests {
+		u, _ := url.Parse(test.url)
+		got, _ := SplitPath(u, test.depth)
+		if got != test.expected {
+			t.Errorf("Expected %q got %q", test.expected, got)
+		}
+	}
+}

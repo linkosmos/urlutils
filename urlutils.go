@@ -107,3 +107,22 @@ func StripQueryFragment(u *url.URL) *url.URL {
 	u.Fragment = ""
 	return u
 }
+
+// SplitPath - splits URL path into leveled segments
+// lenParts  < 2 => 1 level deep
+// lenParts == 2 => 2 level deep
+// lenParts == 3 => 3 level deep
+func SplitPath(u *url.URL, depth int) (string, error) {
+	if u.Path == "" {
+		return "", errors.New("Path is missing")
+	}
+	parts := strings.Split(u.Path, "/")
+	lenParts := (len(parts) - 1) // Golang right most add +1
+	if lenParts == 0 {
+		return "", errors.New("URL Path parts are empty")
+	}
+	if depth < 0 || depth > lenParts {
+		return "", errors.New("Depth out of Path parts range")
+	}
+	return strings.Join(parts[:depth+1], "/"), nil
+}
