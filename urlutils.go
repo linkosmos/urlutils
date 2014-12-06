@@ -52,7 +52,7 @@ func AddWWW(u *url.URL) *url.URL {
 // AddHTTP - adds scheme for URL if missing
 func AddHTTP(u *url.URL) *url.URL {
 	if u.Scheme == "" {
-		u.Scheme = "http://"
+		u.Scheme = "http"
 	}
 	return u
 }
