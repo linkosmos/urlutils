@@ -126,3 +126,11 @@ func SplitPath(u *url.URL, depth int) (string, error) {
 	}
 	return strings.Join(parts[:depth+1], "/"), nil
 }
+
+// NormalizeURL - cleans params, adds www, insecures http scheme
+func NormalizeURL(u *url.URL) (*url.URL, error) {
+	u = StripPathQueryFragment(u)
+	u = AddWWW(u)
+	u.Scheme = "http"
+	return NormalizeDomain(u)
+}
