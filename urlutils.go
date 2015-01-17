@@ -11,6 +11,14 @@ const (
 	assetRegex = "\\.png|\\.jpe??g|\\.gif|\\.bmp|\\.psd|\\.js|\\.json|\\.css|javascript"
 )
 
+var (
+	ErrURLHostMissing         = errors.New("Missing host in URL structure")
+	ErrURLHostMalformed       = errors.New("URL Host is malformed")
+	ErrURLPathMissing         = errors.New("Path is missing")
+	ErrURLPathPartsEmpty      = errors.New("URL Path parts are empty")
+	ErrURLPathDepthOutOfRange = errors.New("Depth out of Path parts range")
+)
+
 // ResolveURL - resolves relative to absolute URL
 func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
 	return target.ResolveReference(relative)
@@ -60,11 +68,11 @@ func AddHTTP(u *url.URL) *url.URL {
 // NormalizeDomain - parses Host and returns root domain
 func NormalizeDomain(u *url.URL) (*url.URL, error) {
 	if u.Host == "" {
-		return nil, errors.New("Missing host in URL structure")
+		return nil, ErrURLHostMissing
 	}
 	domain := strings.Split(u.Host, ".")
 	if len(domain) < 2 {
-		return nil, errors.New("URL Host is malformed")
+		return nil, ErrURLHostMalformed
 	}
 	prefix := ""
 	if strings.HasPrefix(strings.ToLower(u.Host), "www.") {
@@ -78,11 +86,11 @@ func NormalizeDomain(u *url.URL) (*url.URL, error) {
 // e.g.: www.example.com => com.example.www
 func ReverseDomain(u *url.URL) (string, error) {
 	if u.Host == "" {
-		return "", errors.New("Missing host in URL structure")
+		return "", ErrURLHostMissing
 	}
 	domain := strings.Split(u.Host, ".")
 	if len(domain) < 2 {
-		return "", errors.New("URL Host is malformed")
+		return "", ErrURLHostMalformed
 	}
 	var reverseDomain []string
 
@@ -114,15 +122,15 @@ func StripQueryFragment(u *url.URL) *url.URL {
 // lenParts == 3 => 3 level deep
 func SplitPath(u *url.URL, depth int) (string, error) {
 	if u.Path == "" {
-		return "", errors.New("Path is missing")
+		return "", ErrURLPathMissing
 	}
 	parts := strings.Split(u.Path, "/")
 	lenParts := (len(parts) - 1) // Golang right most add +1
 	if lenParts == 0 {
-		return "", errors.New("URL Path parts are empty")
+		return "", ErrURLPathPartsEmpty
 	}
 	if depth < 0 || depth > lenParts {
-		return "", errors.New("Depth out of Path parts range")
+		return "", ErrURLPathDepthOutOfRange
 	}
 	return strings.Join(parts[:depth+1], "/"), nil
 }
