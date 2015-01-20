@@ -26,10 +26,10 @@ func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
 
 // IsAsset - true if link is web asset
 // e.g.: css or image
-func IsAsset(link *url.URL) bool {
+func IsAsset(link string) bool {
 	// Case insensitive regexp
 	r, _ := regexp.Compile("(?i)" + assetRegex)
-	return r.MatchString(link.String())
+	return r.MatchString(link)
 }
 
 // IsRelative - true if link is relative

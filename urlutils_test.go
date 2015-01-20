@@ -18,9 +18,7 @@ var isAssetTests = []struct {
 
 func TestIsAsset(t *testing.T) {
 	for _, test := range isAssetTests {
-		url, _ := url.Parse(test.link)
-		got := IsAsset(url)
-		if got != test.expected {
+		if got := IsAsset(test.link); got != test.expected {
 			t.Errorf("Expected - %q for link: %q", test.expected, test.link)
 		}
 	}
