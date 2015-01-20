@@ -19,7 +19,7 @@ var isAssetTests = []struct {
 func TestIsAsset(t *testing.T) {
 	for _, test := range isAssetTests {
 		if got := IsAsset(test.link); got != test.expected {
-			t.Errorf("Expected - %q for link: %q", test.expected, test.link)
+			t.Errorf("Expected - %t for link: %q", test.expected, test.link)
 		}
 	}
 }
@@ -38,7 +38,7 @@ func TestIsRelative(t *testing.T) {
 		url, _ := url.Parse(test.link)
 		got := IsRelative(url)
 		if got != test.expected {
-			t.Errorf("Expected - %q for link: %q", test.expected, test.link)
+			t.Errorf("Expected - %t for link: %q", test.expected, test.link)
 		}
 	}
 }
@@ -57,7 +57,7 @@ func TestIsAbsolute(t *testing.T) {
 		url, _ := url.Parse(test.link)
 		got := IsAbsolute(url)
 		if got != test.expected {
-			t.Errorf("Expected - %q for link: %q", test.expected, test.link)
+			t.Errorf("Expected - %t for link: %q", test.expected, test.link)
 		}
 	}
 }
