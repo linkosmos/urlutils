@@ -7,16 +7,14 @@ import (
 	"strings"
 )
 
-const (
-	assetRegex = "\\.png|\\.jpe??g|\\.gif|\\.bmp|\\.psd|\\.js|\\.json|\\.css|javascript"
-)
-
 var (
 	ErrURLHostMissing         = errors.New("Missing host in URL structure")
 	ErrURLHostMalformed       = errors.New("URL Host is malformed")
 	ErrURLPathMissing         = errors.New("Path is missing")
 	ErrURLPathPartsEmpty      = errors.New("URL Path parts are empty")
 	ErrURLPathDepthOutOfRange = errors.New("Depth out of Path parts range")
+
+	assetRegex = regexp.MustCompile(`(?i)\.png|\.jpe??g|\.gif|\.bmp|\.psd|\.js|\.json|\.css|javascript`)
 )
 
 // ResolveURL - resolves relative to absolute URL
@@ -27,9 +25,7 @@ func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
 // IsAsset - true if link is web asset
 // e.g.: css or image
 func IsAsset(link string) bool {
-	// Case insensitive regexp
-	r, _ := regexp.Compile("(?i)" + assetRegex)
-	return r.MatchString(link)
+	return assetRegex.MatchString(link)
 }
 
 // IsRelative - true if link is relative
