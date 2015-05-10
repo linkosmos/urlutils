@@ -20,3 +20,4 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - ReverseDomain: reverses URL Host, e.g.: www.example.com => com.example.www
 - SplitPath: splits URL structure Path into desired leveled segments
 - NormalizeURL: cleans params, adds www, insecures http scheme
+- HostTLD: resolves url host top level domain

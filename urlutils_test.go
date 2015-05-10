@@ -154,3 +154,22 @@ func TestSplitPath(t *testing.T) {
 		}
 	}
 }
+
+var hosttldTests = []struct {
+	url      string
+	expected string
+}{
+	{"http://www.example.io/section/here", "io"},
+	{"http://www.example.com/second/here/more?para=22", "com"},
+	{"http://www.example.dance/here/now/params?query=22#fragment", "dance"},
+}
+
+func TestHostTLD(t *testing.T) {
+	for _, test := range hosttldTests {
+		u, _ := url.Parse(test.url)
+		got, _ := HostTLD(u)
+		if got != test.expected {
+			t.Errorf("Expected %q got %q", test.expected, got)
+		}
+	}
+}

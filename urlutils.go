@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// -
 var (
 	ErrURLHostMissing         = errors.New("Missing host in URL structure")
 	ErrURLHostMalformed       = errors.New("URL Host is malformed")
@@ -137,4 +138,14 @@ func NormalizeURL(u *url.URL) (*url.URL, error) {
 	u = AddWWW(u)
 	u.Scheme = "http"
 	return NormalizeDomain(u)
+}
+
+// HostTLD - returns tld extenstion of given host
+func HostTLD(u *url.URL) (string, error) {
+	domain := strings.Split(u.Host, ".")
+	domainSize := len(domain)
+	if domainSize < 1 {
+		return "", ErrURLHostMalformed
+	}
+	return domain[domainSize-1], nil
 }
