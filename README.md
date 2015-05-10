@@ -1,8 +1,8 @@
 urlutils
 ========
 
-[![Build Status](https://travis-ci.org/ernestas-poskus/urlutils.svg?branch=master)](https://travis-ci.org/ernestas-poskus/urlutils)
-[![GoDoc](http://godoc.org/github.com/ernestas-poskus/urlutils?status.svg)](http://godoc.org/github.com/ernestas-poskus/urlutils)
+[![Build Status](https://travis-ci.org/linkosmosis/urlutils.svg?branch=master)](https://travis-ci.org/linkosmosis/urlutils)
+[![GoDoc](http://godoc.org/github.com/linkosmosis/urlutils?status.svg)](http://godoc.org/github.com/linkosmosis/urlutils)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 Golang standard URL wrapper, adds syntactic sugar and few new methods.
@@ -20,7 +20,3 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - ReverseDomain: reverses URL Host, e.g.: www.example.com => com.example.www
 - SplitPath: splits URL structure Path into desired leveled segments
 - NormalizeURL: cleans params, adds www, insecures http scheme
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ernestas-poskus/urlutils/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
