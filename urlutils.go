@@ -79,6 +79,13 @@ func NormalizeDomain(u *url.URL) (*url.URL, error) {
 	return u, nil
 }
 
+func reverseLoop(input []string) (reversed []string) {
+	for i := len(input) - 1; i >= 0; i-- {
+		reversed = append(reversed, input[i])
+	}
+	return reversed
+}
+
 // ReverseDomain - reverses given URL Host
 // e.g.: www.example.com => com.example.www
 func ReverseDomain(u *url.URL) (string, error) {
@@ -89,13 +96,7 @@ func ReverseDomain(u *url.URL) (string, error) {
 	if len(domain) < 2 {
 		return "", ErrURLHostMalformed
 	}
-	var reverseDomain []string
-
-	for i := len(domain) - 1; i >= 0; i-- {
-		reverseDomain = append(reverseDomain, domain[i])
-	}
-
-	return strings.Join(reverseDomain, "."), nil
+	return strings.Join(reverseLoop(domain), "."), nil
 }
 
 // StripPathQueryFragment - strips URL path, query & fragment #
