@@ -1,8 +1,8 @@
 urlutils
 ========
 
-[![Build Status](https://travis-ci.org/linkosmosis/urlutils.svg?branch=master)](https://travis-ci.org/linkosmosis/urlutils)
-[![GoDoc](http://godoc.org/github.com/linkosmosis/urlutils?status.svg)](http://godoc.org/github.com/linkosmosis/urlutils)
+[![Build Status](https://travis-ci.org/linkosmos/urlutils.svg?branch=master)](https://travis-ci.org/linkosmos/urlutils)
+[![GoDoc](http://godoc.org/github.com/linkosmos/urlutils?status.svg)](http://godoc.org/github.com/linkosmos/urlutils)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 Golang standard URL wrapper, adds syntactic sugar and few new methods.
