@@ -14,6 +14,16 @@ var isAssetTests = []struct {
 	{"https://www.example/image.GIF", true},
 	{"https://www.example/image.jpeg", true},
 	{"https://www.example/image.jpg", true},
+	{"https://www.example/image.JPG", true},
+	{"https://www.example/file.pdf", true},
+	{"https://www.example/file.sass", true},
+	{"https://www.example/file.js", true},
+	{"https://www.example/file.jsx", true},
+	{"https://www.example/file.jsz", false},
+	{"https://www.example/file.scss", true},
+	{"https://www.example/file.SCSS", true},
+	{"https://www.example/file.PDF", true},
+	{"https://www.example/image.JPG1", false},
 }
 
 func TestIsAsset(t *testing.T) {

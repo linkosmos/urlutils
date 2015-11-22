@@ -15,7 +15,7 @@ var (
 	ErrURLPathPartsEmpty      = errors.New("URL Path parts are empty")
 	ErrURLPathDepthOutOfRange = errors.New("Depth out of Path parts range")
 
-	assetRegex = regexp.MustCompile(`(?i)\.png|\.jpe??g|\.gif|\.bmp|\.psd|\.js|\.json|\.css|javascript`)
+	assetRegex = regexp.MustCompile(`(?i)\.(png|jpe??g|jsx??|json|css|s[c|a]ss|less|gif|bmp|psd|pdf)$|javascript:`)
 )
 
 // ResolveURL - resolves relative to absolute URL
