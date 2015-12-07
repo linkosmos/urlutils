@@ -21,3 +21,4 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - SplitPath: splits URL structure Path into desired leveled segments
 - NormalizeURL: cleans params, adds www, insecures http scheme
 - HostTLD: resolves url host top level domain
+- IsHomePage: top level root URL

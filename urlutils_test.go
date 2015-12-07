@@ -183,3 +183,26 @@ func TestHostTLD(t *testing.T) {
 		}
 	}
 }
+
+var isRootTests = []struct {
+	url      string
+	expected bool
+}{
+	{"http://www.example.io", false},
+	{"http://www.example.io/", true},
+	{"http://www.example.io#named_link", false},
+	{"http://www.example.io?some=parm", false},
+	{"http://www.example.io/section/here", false},
+	{"http://www.example.com/second/here/more?para=22", false},
+	{"http://www.example.dance/here/now/params?query=22#fragment", false},
+}
+
+func TestIsRoot(t *testing.T) {
+	for _, test := range isRootTests {
+		u, _ := url.Parse(test.url)
+		got := IsRoot(u)
+		if got != test.expected {
+			t.Errorf("Expected %q got %q", test.expected, got)
+		}
+	}
+}
