@@ -197,10 +197,10 @@ var isRootTests = []struct {
 	{"http://www.example.dance/here/now/params?query=22#fragment", false},
 }
 
-func TestIsRoot(t *testing.T) {
+func TestIsHomePage(t *testing.T) {
 	for _, test := range isRootTests {
 		u, _ := url.Parse(test.url)
-		got := IsRoot(u)
+		got := IsHomePage(u)
 		if got != test.expected {
 			t.Errorf("Expected %q got %q", test.expected, got)
 		}
