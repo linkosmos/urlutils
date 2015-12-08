@@ -22,3 +22,5 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - NormalizeURL: cleans params, adds www, insecures http scheme
 - HostTLD: resolves url host top level domain
 - IsHomePage: top level root URL
+- IsEmptyQuery: whether URL query and fragment is empty or not
+- IsEmptyPath: whether URL doesn't have /path

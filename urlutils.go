@@ -155,3 +155,13 @@ func HostTLD(u *url.URL) (string, error) {
 func IsHomePage(u *url.URL) bool {
 	return u != nil && u.Path == "/" && u.RawQuery == "" && u.Fragment == ""
 }
+
+// IsEmptyQuery - whether URL query and fragment is empty or not
+func IsEmptyQuery(u *url.URL) bool {
+	return u != nil && u.RawQuery == "" && u.Fragment == ""
+}
+
+// IsEmptyPath - whether URL doesn't have /path
+func IsEmptyPath(u *url.URL) bool {
+	return u != nil && u.Path == ""
+}

@@ -1,8 +1,11 @@
 package urlutils
 
 import (
+	"fmt"
 	"net/url"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var isAssetTests = []struct {
@@ -204,5 +207,51 @@ func TestIsHomePage(t *testing.T) {
 		if got != test.expected {
 			t.Errorf("Expected %q got %q", test.expected, got)
 		}
+	}
+}
+
+var isEmptyQueryTests = []struct {
+	url      string
+	expected bool
+}{
+	{"http://www.example.io", true},
+	{"http://www.example.io/", true},
+	{"http://www.example.io#named_link", false},
+	{"http://www.example.io?some=parm", false},
+	{"http://www.example.io/section/here", true},
+	{"http://www.example.com/second/here/more?para=22", false},
+	{"http://www.example.dance/here/now/params?query=22#fragment", false},
+}
+
+func TestEmptyQuery(t *testing.T) {
+	for _, test := range isEmptyQueryTests {
+		u, _ := url.Parse(test.url)
+		got := IsEmptyQuery(u)
+
+		assert.Equal(t, test.expected, got,
+			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
+	}
+}
+
+var isEmptyPathTests = []struct {
+	url      string
+	expected bool
+}{
+	{"http://www.example.io", true},
+	{"http://www.example.io/", false},
+	{"http://www.example.io#named_link", true},
+	{"http://www.example.io?some=parm", true},
+	{"http://www.example.io/section/here", false},
+	{"http://www.example.com/second/here/more?para=22", false},
+	{"http://www.example.dance/here/now/params?query=22#fragment", false},
+}
+
+func TestEmptyPath(t *testing.T) {
+	for _, test := range isEmptyPathTests {
+		u, _ := url.Parse(test.url)
+		got := IsEmptyPath(u)
+
+		assert.Equal(t, test.expected, got,
+			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
 	}
 }
