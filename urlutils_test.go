@@ -255,3 +255,26 @@ func TestEmptyPath(t *testing.T) {
 			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
 	}
 }
+
+var isPlainTests = []struct {
+	url      string
+	expected bool
+}{
+	{"http://www.example.io", true},
+	{"http://www.example.io/", false},
+	{"http://www.example.io#named_link", false},
+	{"http://www.example.io?some=parm", false},
+	{"http://www.example.io/section/here", false},
+	{"http://www.example.com/second/here/more?para=22", false},
+	{"http://www.example.dance/here/now/params?query=22#fragment", false},
+}
+
+func TestPlain(t *testing.T) {
+	for _, test := range isPlainTests {
+		u, _ := url.Parse(test.url)
+		got := IsPlain(u)
+
+		assert.Equal(t, test.expected, got,
+			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
+	}
+}

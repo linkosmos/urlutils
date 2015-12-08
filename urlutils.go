@@ -165,3 +165,8 @@ func IsEmptyQuery(u *url.URL) bool {
 func IsEmptyPath(u *url.URL) bool {
 	return u != nil && u.Path == ""
 }
+
+// IsPlain - whether URL has no query and path
+func IsPlain(u *url.URL) bool {
+	return IsEmptyPath(u) && IsEmptyQuery(u)
+}
