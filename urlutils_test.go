@@ -205,7 +205,7 @@ func TestIsHomePage(t *testing.T) {
 		u, _ := url.Parse(test.url)
 		got := IsHomePage(u)
 		if got != test.expected {
-			t.Errorf("Expected %q got %q", test.expected, got)
+			t.Errorf("Expected %t got %t", test.expected, got)
 		}
 	}
 }
