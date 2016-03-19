@@ -278,3 +278,13 @@ func TestPlain(t *testing.T) {
 			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
 	}
 }
+func TestIsNotPlain(t *testing.T) {
+	for _, test := range isPlainTests {
+		u, _ := url.Parse(test.url)
+		got := IsNotPlain(u)
+
+		// Expecting reverse
+		assert.Equal(t, !test.expected, got,
+			fmt.Sprintf("Expected %t for %s", test.expected, test.url))
+	}
+}

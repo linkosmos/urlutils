@@ -27,3 +27,4 @@ Golang standard URL wrapper, adds syntactic sugar and few new methods.
 - IsEmptyQuery: whether URL query and fragment is empty or not
 - IsEmptyPath: whether URL doesn't have /path
 - IsPlain: whether URL has no query and path
+- IsNotPlain: reverse of IsPlain
