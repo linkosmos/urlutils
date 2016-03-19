@@ -153,7 +153,7 @@ func HostTLD(u *url.URL) (string, error) {
 
 // IsHomePage - top level root URL
 func IsHomePage(u *url.URL) bool {
-	return u != nil && u.Path == "/" && u.RawQuery == "" && u.Fragment == ""
+	return IsEmptyQuery(u) && u.Path == "/"
 }
 
 // IsEmptyQuery - whether URL query and fragment is empty or not
