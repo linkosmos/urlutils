@@ -3,7 +3,6 @@ package urlutils
 import (
 	"errors"
 	"net/url"
-	"regexp"
 	"strings"
 )
 
@@ -14,9 +13,15 @@ var (
 	ErrURLPathMissing         = errors.New("Path is missing")
 	ErrURLPathPartsEmpty      = errors.New("URL Path parts are empty")
 	ErrURLPathDepthOutOfRange = errors.New("Depth out of Path parts range")
-
-	assetRegex = regexp.MustCompile(`(?i)\.(png|jpe??g|jsx??|json|css|s[c|a]ss|less|gif|bmp|psd|pdf)$|javascript:`)
 )
+
+// Assets - most commonly appearing assets
+var Assets = []string{
+	".png", ".jpeg", ".jpg", ".gif", ".bmp",
+	".jsx", ".js", ".json",
+	".css", ".scss", ".sass", ".less",
+	".psd", ".pdf",
+}
 
 // ResolveURL - resolves relative to absolute URL
 func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
@@ -26,7 +31,12 @@ func ResolveURL(target *url.URL, relative *url.URL) *url.URL {
 // IsAsset - true if link is web asset
 // e.g.: css or image
 func IsAsset(link string) bool {
-	return assetRegex.MatchString(link)
+	for _, asset := range Assets {
+		if strings.HasSuffix(link, asset) {
+			return true
+		}
+	}
+	return false
 }
 
 // IsRelative - true if link is relative
